@@ -11,15 +11,15 @@ int main(void){
 
   DIO_init();
 
-  char button_onText[15] = "Button Pressed\n";
-  char button_offText[19] = "Button not Pressed\n";
-  char led_on[10] = "Led is on\n";
-  char led_off[11] = "Led is off\n";
-  char compare_onCmd[] = "led_on";
-  char compare_offCmd[] = "led_off";
-  char receive_string[8];
-  int counter = 0;
-  char received;
+  char button_onText[15] = "Button Pressed\n"; //char array for button on text
+  char button_offText[19] = "Button not Pressed\n"; //char array for button off text
+  char led_on[10] = "Led is on\n"; //char array for LED on text
+  char led_off[11] = "Led is off\n"; //char array for LED off text
+  char compare_onCmd[] = "led_on"; //char array for comparison for LED on
+  char compare_offCmd[] = "led_off"; //char array for comparison for LED off
+  char receive_string[25]; //empty string to store received characters
+  int counter = 0; //counter for measuring length of string
+  char received; //empty char variable to receive from the serial monitor input
 
   uart_init(BAUD); //initialize the BAUDRate setup
 
@@ -42,6 +42,7 @@ int main(void){
           uart_transmit_array("Incorrect command\n",18); //if command is not led_on or led_off, transmit incorrect command for clarity
         }
         counter = 0; //reset the counter for checking the word length after finishing the loop
+        memset(receive_string,' ',sizeof(receive_string));
       }
 
       
